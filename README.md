@@ -4,5 +4,5 @@
 
 
 ## working condition check
-[x] kafka sample01
-[x] kafka sample02
+[y] kafka sample01
+[y] kafka sample02
