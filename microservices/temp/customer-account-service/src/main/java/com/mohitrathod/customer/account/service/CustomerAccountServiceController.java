@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.mohitrathod.customer.account.bean.User;
+import com.mohitrathod.customer.account.repository.BasicUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class CustomerAccountServiceController {
 
 	@Autowired
 	private CustomerWalletServiceProxy proxy;
+
+	@Autowired
+	BasicUserRepository repository;
 
 	@GetMapping("/currency-converter/from/{from}/to/{to}/quantity/{quantity}")
 	public CustomerBalanceBean convertCurrency(@PathVariable String from, @PathVariable String to,
@@ -55,6 +60,17 @@ public class CustomerAccountServiceController {
 	public void createCustomer(@RequestParam String name) {
 
 		System.out.println(name + "< customer name");
+
+		User user = new User();
+		user.setId(43L);
+		user.setUsername("mfoobar");
+		user.setFirstname("afirstname");
+		user.setLastname("lastname");
+
+		user = repository.save(user);
+
+		System.out.println(repository.findById(user.getId()));
+
 	}
 
 	@GetMapping("/info")
